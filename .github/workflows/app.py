@@ -23,8 +23,8 @@ on:
   workflow_dispatch:
 
 env:
-  AZURE_WEBAPP_NAME: your-app-name    # set this to your application's name
-  AZURE_WEBAPP_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
+  app.py    # set this to your application's name
+  app.py_PACKAGE_PATH: '.'      # set this to the path to your web app project, defaults to the repository root
   NODE_VERSION: '20.x'                # set this to the node version to use
 
 permissions:
@@ -69,10 +69,10 @@ jobs:
       with:
         name: node-app
 
-    - name: 'Deploy to Azure WebApp'
+    - name: 'Deploy to app.py'
       id: deploy-to-webapp
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.AZURE_WEBAPP_NAME }}
-        publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
-        package: ${{ env.AZURE_WEBAPP_PACKAGE_PATH }}
+        app-name: ${{ env.app.py }}
+        publish-profile: ${{ secrets.app.py_PUBLISH_PROFILE }}
+        package: ${{ env.app.py_PACKAGE_PATH }}
